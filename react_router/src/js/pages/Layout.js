@@ -1,21 +1,28 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
+import Footer from "../components/layout/Footer";
+import Nav from "../components/layout/Nav";
+
 class Layout extends React.Component {
-  navigate() {
-    console.log(this.props.history);
-    this.props.history.push("/");
-  }
   render() {
-    console.log(this.props)
+    const { location } = this.props;
+    const containerStyle = {
+      marginTop: "60px"
+    };
+    console.log("layout");
     return (
       <div>
-        <h1>KillerNews.net</h1>
-        {this.props.children}
-        <Link to="/archives/some-other-articles" class="btn btn-warning">archives (some other articles)</Link>
-        <Link to="/archives"><button class="btn btn-danger">archives</button></Link>
-        <Link to="/settings/main"><button class="btn btn-success">settings(main)</button></Link>
-        <Link to="/settings/extra"><button class="btn btn-success">settings(extra)</button></Link>
-        <button class="btn btn-info" onClick={this.navigate.bind(this)}>featured</button>
+        <Nav location={location} />
+        <div class="container" style={containerStyle}>
+          <div class="row">
+            <div class="col-lg-12">
+              <h1>Layout.js</h1>
+              {this.props.children}
+            </div>
+          </div>
+          <Footer/>
+        </div>
       </div>
     );
   }
